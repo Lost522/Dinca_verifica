@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista Film</title>
+</head>
+<body>
+<h1>Lista Film</h1>
+<table border="3">
+    <thead>
+    <tr>
+        <th>Codice</th>
+        <th>Titolo</th>
+        <th>Genere</th>
+        <th>Anno</th>
+        <th>Voto</th>
+        <th>Dettagli</th>
+        <th>Elimina</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="film : ${filmCatalogo}">
+        <td><a th:href="@{/films/{codice}(codice=${film.codice})}" th:text="${film.codice}"></a></td>
+        <td th:text="${film.titolo}"></td>
+        <td th:text="${film.genere}"></td>
+        <td th:text="${film.anno}"></td>
+        <td th:text="${film.voto}"></td>
+        <td><a th:href="@{/films/{codice}(codice=${film.codice})}">Dettagli</a></td>
+        <td><form th:action="@{/films/{codice}/elimina(codice=${film.codice})}" method="post">
+            <button type="submit">Elimina</button>
+        </form></td>
+    </tr>
+    </tbody>
+</table>
+<form th:action="@{/films/nuovo}" method="post" th:object="${nuovoFilm}">
+    <input type="text" th:field="*{codice}" placeholder="Codice">
+    <input type="text" th:field="*{titolo}" placeholder="Titolo">
+    <input type="text" th:field="*{genere}" placeholder="Genere">
+    <input type="number" th:field="*{anno}" placeholder="Anno">
+    <input type="number" th:field="*{voto}" placeholder="Voto">
+    <button type="submit">Aggiungi Film</button>
+</form>
+</body>
+</html>

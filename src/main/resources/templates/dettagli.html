@@ -1,0 +1,20 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dettagli Film</title>
+</head>
+<body>
+<h1>Dettagli Film</h1>
+<p>Codice: <span th:text="${film.codice}"></span></p>
+<p>Titolo: <span th:text="${film.titolo}"></span></p>
+<p>Genere: <span th:text="${film.genere}"></span></p>
+<p>Anno: <span th:text="${film.anno}"></span></p>
+<p>Voto: <span th:text="${film.voto}"></span></p>
+<form th:action="@{/films/{codice}/elimina(codice=${film.codice})}" method="post">
+    <button type="submit">Elimina</button>
+</form>
+<a href="/films">Torna al Catalogo</a>
+</body>
+</html>
